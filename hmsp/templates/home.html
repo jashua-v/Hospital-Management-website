@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Welcome to Good Hospital{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: cursive, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: black;
+        background-image: url("{% static 'b7.jpg' %}");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .heading {
+        font-size: 4.5em;
+        font-weight: bold;
+        margin-bottom: 1px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .subheading {
+        font-size: 2em;
+        margin-bottom: 40px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .details {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .animated-button {
+        display: inline-block;
+        padding: 30px 40px;
+        background-color: black;
+        color: antiquewhite;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1.3em;
+        font-weight: bold;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        transition: transform 0.2s;
+    }
+
+    .animated-button:hover {
+        transform: scale(1.1);
+    }
+
+</style>
+
+<div class="container">
+    <h1 class="heading">WELCOME TO THE INFIRMARY MEDICAL CENTER</h1>
+    <h2 class="subheading">We Take Care Of Your Healthy Health</h2>
+    <p class="details">We Are The Home Of Healing, Compassion, And Resilience</p>
+    <p class="details">Visit us today and experience the best medical care.</p>
+    <a href="{% url 'add_patient' %}" class="animated-button">Dig into</a>
+</div>
+{% endblock %}

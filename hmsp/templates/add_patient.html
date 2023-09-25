@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Add Patient
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("{% static 'b1.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 36px;
+            background-color: #f9f9f9;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            margin-bottom: 20px; /* Add margin-bottom for gap */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: fit-content;
+            margin: 0 auto;
+        }
+    </style>
+
+    <div class="content-wrapper">
+        <h1>Add Patient</h1>
+        <form method="POST" action="{% url 'add_patient' %}">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" name="name" required><br>
+            <label for="age">Age:</label>
+            <input type="number" name="age" required><br>
+            <label for="gender">Gender:</label>
+            <select name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select><br>
+            <label for="address">Address:</label>
+            <textarea name="address" required></textarea><br>
+            <input type="submit" value="Add">
+        </form>
+        <a href="{% url 'patient_list' %}" class="back-link">Back to Patients</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Add Appointment
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'b3.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #333;
+            text-decoration: none;
+            background-color: #ffcc00; /* Set your desired highlight color here */
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+
+        .back-link a:hover {
+            background-color: #e6b800; /* Set your desired highlight color for hover state */
+        }
+    </style>
+
+    <h1>Add Appointment</h1>
+    <form method="POST" action="{% url 'add_appointment' %}">
+        {% csrf_token %}
+        <label for="patient">Patient:</label>
+        <select name="patient" required>
+            {% for patient in patients %}
+                <option value="{{ patient.id }}">{{ patient.name }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="date">Date:</label>
+        <input type="date" name="date" required><br>
+        <label for="time">Time:</label>
+        <input type="time" name="time" required><br>
+        <input type="submit" value="Add">
+    </form>
+    <div class="back-link">
+        <a href="{% url 'appointment_list' %}">Back to Appointments</a>
+    </div>
+{% endblock %}

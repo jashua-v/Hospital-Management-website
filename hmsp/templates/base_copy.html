@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            font-family: papyrus, fantasy;
+            font-size: 20px;
+            background-color: teal;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar li {
+            margin-right: 10px;
+        }
+
+        .navbar li a {
+            display: block;
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .navbar li a:hover {
+            background-color: rgba;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="{% url 'home' %}">THE INFIRMARY MEDICAL CENTER</a>
+        </div>
+        <ul>
+            <li><a href="{% url 'add_patient' %}">Add patient</a></li>
+            <li><a href="{% url 'patient_list' %}">patient list</a></li>
+            <li><a href="{% url 'add_appointment' %}">Add Appointment</a></li>
+            <li><a href="{% url 'appointment_list' %}">Appointment List</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

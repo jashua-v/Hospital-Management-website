@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Appointments
+{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-image: url("{% static 'b4.jpg' %}"); /* Replace 'your_image.jpg' with the actual path of your image relative to the static directory */
+            background-size: cover;
+        }
+
+        .appointments-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .appointments-container h1 {
+            color: #333;
+        }
+
+        .appointments-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .appointments-table th {
+            padding: 10px;
+            text-align: left;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .appointments-table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .add-appointment-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .add-appointment-link:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+
+    <div class="appointments-container">
+        <h1>Appointments</h1>
+        <table class="appointments-table">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.patient.name }}</td>
+                        <td>{{ appointment.date }}</td>
+                        <td>{{ appointment.time }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'add_appointment' %}" class="add-appointment-link">Add Appointment</a>
+    </div>
+{% endblock %}
